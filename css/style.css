@@ -1,0 +1,17 @@
+.container-fluid{
+    height: 80px;
+    padding: 0 26px 0 26px;
+}
+.navbar-brand{
+    font-size: 28px;
+}
+.nav-link{
+    font-size: 20px;
+}
+.btn-outline-success{
+    margin: 0 10px 0 10px;
+}
+
+body {
+    margin-top:20px;
+}
