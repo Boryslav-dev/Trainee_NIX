@@ -11,7 +11,7 @@
     <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-
+<?php include "header.php"?>
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">NIX_Education</a>
@@ -33,6 +33,7 @@
 </nav>
 
 <?php include "profile.php"?>
+<?php include "footer.php"?>
 
 </body>
 </html>
