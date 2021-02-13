@@ -1,5 +1,5 @@
 <div class="container bootstrap snippets bootdey">
-    <h1 class="text-primary"><span class="glyphicon glyphicon-user"></span>Profile</h1>
+    <h1 class="text-primary">Profile</h1>
     <hr>
     <div class="row">
         <!-- left column -->

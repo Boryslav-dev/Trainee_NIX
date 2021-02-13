@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sing in</title>
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../css/authorization.css" rel="stylesheet">
+    <link href="/css/authorization.css" rel="stylesheet">
 </head>
 <body class="text-center">
 

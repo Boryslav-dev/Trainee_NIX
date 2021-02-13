@@ -1,16 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Top navbar example · Bootstrap v5.0</title>
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="navbar-top.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-</head>
-<body>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
     <div class="container-fluid">
@@ -31,8 +18,3 @@
         </div>
     </div>
 </nav>
-
-<?php include "profile.php"?>
-
-</body>
-</html>

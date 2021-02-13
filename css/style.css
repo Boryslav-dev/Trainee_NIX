@@ -15,3 +15,27 @@
 body {
     margin-top:20px;
 }
+/**************************************
+/ Header
+**************************************/
+
+.header h5{
+    padding-left: 20px;
+}
+
+
+ .footer-container {
+     width:100%;
+     background:#333;
+     clear: both;
+     position: relative;
+     z-index: 10;
+ }
+.footer-col {color:#ababab; font-size: 14px;}
+.footer-col a {color:#dcdcdc; font-weight: bold;}
+.footer-col a:hover {color:#d8450b; text-decoration: none;}
+.footer-col h5 {margin-bottom: 25px;}
+
+/**** Sub Footer ****/
+.footer-sub {background: #1f1f1f; padding: 10px 0px;}
+.footer-sub div div span {padding: 0px 20px;}
