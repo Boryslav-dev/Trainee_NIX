@@ -1,6 +1,5 @@
 <?php
 
-
 class Route
 {
 
@@ -38,7 +37,8 @@ class Route
             include "application/controllers/" . $controller_file;
         }
         else {
-            Route::errorPage404();
+            //Route::errorPage404();
+            var_dump($_SERVER);
         }
         // создаем контроллер
         $controller = new $controller_name();
@@ -48,7 +48,8 @@ class Route
             $controller->$action_name();
         }
         else {
-            Route::errorPage404();
+            //Route::errorPage404();
+            var_dump($_SERVER);
         }
     }
 
