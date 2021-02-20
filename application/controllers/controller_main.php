@@ -2,13 +2,16 @@
 
 use application\core\Controller;
 use application\core\View;
-use application\models\ModelMain;
+use application\models\Model_Main;
 
 class Controller_Main extends Controller
 {
+
+    private Model_Main $model;
+
     public function __construct()
     {
-        $this->model = new ModelMain();
+        $this->model= new Model_Main();
         $this->view = new View();
     }
 

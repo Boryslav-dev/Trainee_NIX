@@ -14,16 +14,17 @@
 <body class="text-center">
 
 <main class="form-signup">
-    <form>
+    <form action="" method="post">
         <img class="mb-4" src="" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
-        <label for="inputName" class="visually-hidden">Nickname</label>
-        <input type="name" id="inputName" class="form-control" placeholder="Name" required autofocus>
+        <label for="inputLogin" class="visually-hidden">Login</label>
+        <input type="login" name="login" id="inputLogin" class="form-control" placeholder="Login" required autofocus>
         <label for="inputEmail" class="visually-hidden">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="visually-hidden">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <p style="color:red"><?php echo("$data") ?></p>
+        <button class="w-100 btn btn-lg btn-primary" name="submit" type="submit">Sign up</button>
     </form>
 </main>
 

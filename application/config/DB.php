@@ -10,13 +10,14 @@ use PDO;
 
 class DB
 {
-
+    /** @var PDO */
     const USER = "a25store_config";
     const PASS = "xe)#K5t8S2";
     const HOST = "a25store.mysql.ukraine.com.ua";
     const DB   = "a25store_config";
+    private PDO $pdo;
 
-    public static function connToDB(): PDO
+    public function __construct()
     {
         $user = self::USER;
         $pass = self::PASS;
@@ -29,7 +30,19 @@ class DB
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES => false,
         ];
-        return new PDO($dsn, $user, $pass, $opt);
+        $this-> pdo = new PDO($dsn, $user, $pass, $opt);
+        $this-> pdo -> exec('SET NAMES UTF8');
     }
 
+    public function query(string $sql, array $params = [], string $className = 'stdClass'): ?array
+    {
+        $sth = $this->pdo->prepare($sql);
+        $result = $sth->execute($params);
+
+        if (false === $result) {
+            return null;
+        }
+
+        return $sth->fetchAll(PDO::FETCH_CLASS, $className);
+    }
 }

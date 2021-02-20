@@ -2,13 +2,12 @@
 
 namespace application\models;
 
-use application\core\Model;
-use PDO;
+use application\models\Posts\Posts;
 
-class ModelMain extends Model
+class Model_Main
 {
     public function getData(): array
     {
-        return $items = $this -> db -> connToDB() -> query("SELECT * FROM `POST`")->fetchAll();
+        return  $posts = Posts::findAll();
     }
 }

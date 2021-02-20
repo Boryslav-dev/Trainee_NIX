@@ -1,4 +1,4 @@
 <div class="authorization">
-    <button class="btn btn-outline-success"<a href="\login">Sing-in</a>
-    <button class="btn btn-outline-success"<a href="\registration">Sing-up</a>
+    <a class="btn btn-outline-success" href="\login" role="button">Sing-in</a>
+    <a class="btn btn-outline-success" href="\registration" role="button">Sing-up</a>
 </div>

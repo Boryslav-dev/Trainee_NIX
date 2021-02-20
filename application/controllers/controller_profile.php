@@ -2,13 +2,13 @@
 
 use application\core\Controller;
 use application\core\View;
-use application\models\ModelProfile;
+use application\models\Model_Profile;
 
 class Controller_Profile extends Controller
 {
     public function __construct()
     {
-       // $this->model = new ModelProfile();
+       // $this->model = new Model_Profile();
         $this->view = new View();
     }
 
