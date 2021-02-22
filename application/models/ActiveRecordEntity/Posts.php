@@ -22,7 +22,6 @@ class Posts extends ActiveRecord
     {
         return $this->title;
     }
-
     /**
      * @return string
      */

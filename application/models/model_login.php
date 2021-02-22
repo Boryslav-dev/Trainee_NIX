@@ -4,7 +4,7 @@ namespace application\models;
 
 use application\models\Users\Users;
 
-class Model_Registration extends Users
+class Model_Login extends Users
 {
 
 }

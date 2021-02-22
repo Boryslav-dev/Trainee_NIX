@@ -17,6 +17,9 @@ class Route
         if (!empty($route[1])) {
             $controller_name = $route[1];
         }
+        if (!empty($route[2])) {
+            $action_name = $route[2];
+        }
          // добавляем префиксы
         $model_name = 'Model_' . $controller_name;
         $controller_name = 'Controller_' . $controller_name;
@@ -37,8 +40,7 @@ class Route
             include "application/controllers/" . $controller_file;
         }
         else {
-            //Route::errorPage404();
-            var_dump($_SERVER);
+            Route::errorPage404();
         }
         // создаем контроллер
         $controller = new $controller_name();
@@ -48,8 +50,7 @@ class Route
             $controller->$action_name();
         }
         else {
-            //Route::errorPage404();
-            var_dump($_SERVER);
+            Route::errorPage404();
         }
     }
 

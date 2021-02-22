@@ -4,7 +4,7 @@ namespace application\models;
 
 use application\models\Posts\Posts;
 
-class Model_Main
+class Model_Main extends Posts
 {
     public function getData(): array
     {

@@ -1,4 +1,4 @@
 <div class="authorization">
-    <a class="btn btn-outline-success" href="\login" role="button">Sing-in</a>
-    <a class="btn btn-outline-success" href="\registration" role="button">Sing-up</a>
+    <?php echo(($_SESSION['login']));?>
+    <a class="btn btn-outline-success" href="/login/Logout" role="button">Log-out</a>
 </div>

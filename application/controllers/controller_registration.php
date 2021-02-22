@@ -3,10 +3,15 @@
 use application\core\Controller;
 use application\core\View;
 use application\models\Model_Registration;
-use application\config\User;
+use application\models\Users\Users;
 
 class Controller_Registration extends Controller
 {
+    /**
+     * @var Model_Registration
+     */
+    private Model_Registration $model;
+
     public function __construct()
     {
         $this->view = new View();
@@ -33,18 +38,24 @@ class Controller_Registration extends Controller
                     preg_match($pattern_email, $email) &&
                     preg_match($pattern_password, $password)) {
 
-                    $user = new User();
+                    $user = new Users();
 
-                    $user->login = $login;
-                    $user->email = $email;
-                    $user->password =$password;
-                    $user->save();
+                    $atributs = [$user->login = $login,
+                        $user->email = $email,
+                        $user->password = $password,
+                        $user->First_Name = "",
+                        $user->Last_Name = "",
+                        $user->Company = ""];
 
-                } else {
+                    $data = $user->save($atributs);
+
+                }
+                else {
                     $data = 'Не правильно введённые данные, пароль должен иметь одну цифру и одну заглавную 
                 букву';
                 }
-            } else {
+            }
+            else {
                 $data = 'Некоторые поля пустые';
             }
         }
