@@ -1,0 +1,12 @@
+{
+    "name": "boryslav/trainee_nix",
+    "authors": [
+        {
+            "name": "Boryslav-Dev",
+            "email": "kuchkovborislav000@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-pdo": "*"
+    }
+}
