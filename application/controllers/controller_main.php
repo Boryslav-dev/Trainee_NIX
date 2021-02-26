@@ -6,7 +6,6 @@ use application\models\Model_Main;
 
 class Controller_Main extends Controller
 {
-
     private Model_Main $model;
 
     public function __construct()

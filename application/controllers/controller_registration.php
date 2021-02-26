@@ -3,7 +3,7 @@
 use application\core\Controller;
 use application\core\View;
 use application\models\Model_Registration;
-use application\models\Users\Users;
+use application\models\Persons\Persons;
 
 class Controller_Registration extends Controller
 {
@@ -38,7 +38,7 @@ class Controller_Registration extends Controller
                     preg_match($pattern_email, $email) &&
                     preg_match($pattern_password, $password)) {
 
-                    $user = new Users();
+                    $user = new Persons();
 
                     $atributs = [$user->login = $login,
                         $user->email = $email,
@@ -49,6 +49,7 @@ class Controller_Registration extends Controller
 
                     $data = $user->save($atributs);
 
+                    header("Location:/main");
                 }
                 else {
                     $data = 'Не правильно введённые данные, пароль должен иметь одну цифру и одну заглавную 

@@ -8,7 +8,8 @@
 .nav-link{
     font-size: 20px;
 }
-.btn-outline-success{
+
+.btn-outline-success {
     margin: 0 10px 0 10px;
 }
 
@@ -38,3 +39,7 @@ body {
 /**** Sub Footer ****/
 .footer-sub {background: #1f1f1f; padding: 10px 0px;}
 .footer-sub div div span {padding: 0px 20px;}
+
+.uploadPhoto{
+    margin: 10px 0 0 0;
+}

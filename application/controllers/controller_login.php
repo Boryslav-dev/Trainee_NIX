@@ -3,7 +3,7 @@
 use application\core\Controller;
 use application\core\View;
 use application\models\Model_Login;
-use application\models\Users\Users;
+use application\models\Persons\Persons;
 
 class Controller_Login extends Controller
 {
@@ -18,7 +18,7 @@ class Controller_Login extends Controller
         $this->model = new Model_Login();
     }
 
-    public function actionIndex()
+     public function actionIndex()
     {
         if (isset($_POST['submit'])) {
 
@@ -28,28 +28,33 @@ class Controller_Login extends Controller
                 $login = $_POST['login'];
                 $password = $_POST['password'];
 
-                $user = new Users();
+                $user = new Persons();
 
-                $atributs = [$user->login = $login,
-                    $user->password = $password];
+                $atributs = ['login' => $user->login = $login,
+                   'password' => $user->password = $password];
 
-                $userInfo = Users::getInfoUser($atributs);
-                session_start();
-                foreach ($userInfo as $item) {
-                    $_SESSION['login'] = $item->getLogin();
-                    $_SESSION['email'] = $item->getEmail();
-                    $_SESSION['First_Name'] = $item->getFirst_Name();
-                    $_SESSION['Last_Name'] = $item->getLast_Name();
-                    $_SESSION['Company'] = $item->getCompany();
+                if($user -> checkPassword($atributs) == true) {
+                    $userInfo = Persons::getInfoUser($atributs);
+                    session_start();
+                    foreach ($userInfo as $item) {
+                        $_SESSION['login'] = $item->getLogin();
+                        $_SESSION['email'] = $item->getEmail();
+                        $_SESSION['First_Name'] = $item->getFirst_Name();
+                        $_SESSION['Last_Name'] = $item->getLast_Name();
+                        $_SESSION['Company'] = $item->getCompany();
+                        $_SESSION['avatar'] = $item->getAvatar();
+                    }
+                    header("Location:/main");
                 }
-                header("Location:/main");
+                else {
+                    $data = "Неправильный пароль";
+                }
             }
-        else {
+            else {
                 $data = 'Некоторые поля пустые';
             }
         }
-
-            $this->view->generate(null, 'login_view.php', $data);
+        $this->view->generate(null, 'login_view.php', $data);
     }
 
     public function actionLogout()

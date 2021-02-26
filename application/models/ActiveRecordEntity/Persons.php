@@ -1,12 +1,12 @@
 <?php
 
-namespace application\models\Users;
+namespace application\models\Persons;
 
 use application\core\ActiveRecord;
 
-class Users extends ActiveRecord
+class Persons extends ActiveRecord
 {
-    protected $id;
+    protected $ID;
 
     protected $login;
 
@@ -19,6 +19,8 @@ class Users extends ActiveRecord
     protected $Last_Name;
 
     protected $Company;
+
+    protected $avatar;
 
     /**
      * @return string
@@ -43,9 +45,13 @@ class Users extends ActiveRecord
     {
         return $this->Company;
     }
+    public function getAvatar(): string
+    {
+        return $this->avatar;
+    }
 
     protected static function getTableName(): string
     {
-        return 'USERS';
+        return 'Persons';
     }
 }

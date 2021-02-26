@@ -45,4 +45,16 @@ class DB
 
         return $sth->fetchAll(PDO::FETCH_CLASS, $className);
     }
+
+    public function queryAll(string $sql, array $params = []): ?array
+    {
+        $sth = $this->pdo->prepare($sql);
+        $result = $sth->execute($params);
+
+        if (false === $result) {
+            return null;
+        }
+
+        return $sth->fetchAll(PDO::FETCH_COLUMN);
+    }
 }

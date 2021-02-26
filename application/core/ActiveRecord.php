@@ -4,8 +4,6 @@ namespace application\core;
 
 use application\config\DB;
 
-use PDO;
-
 abstract class ActiveRecord
 {
 
@@ -59,8 +57,9 @@ abstract class ActiveRecord
     {
         $db = new Db();
         $entities = $db->query(
-            'SELECT login, email, First_Name, Last_Name, Company  FROM `' . static::getTableName() . '` WHERE login Like ? AND password Like ?;',
-            $atribuits,
+            'SELECT login, email, First_Name, Last_Name, Company, avatar  FROM `' . static::getTableName() .
+            '` WHERE login Like :login AND password Like :password;',
+            [':login' => $atribuits["login"], ':password' => $atribuits["password"]],
             static::class
         );
         return $entities;
@@ -69,20 +68,28 @@ abstract class ActiveRecord
     public function insert($atribuits): ?array
     {
         $db = new Db();
-        return $db->query('INSERT INTO `' . static::getTableName() . '`(login, email, password, First_Name, Last_Name, Company) VALUES (?, ?, ?, ?, ?, ?);', $atribuits, static::class);
+        return $db->query('INSERT INTO `' . static::getTableName() . '`(login, email, password, First_Name, 
+        Last_Name, Company) VALUES (?, ?, ?, ?, ?, ?);', $atribuits, static::class);
     }
 
-    public function update($atribuits): ?array
+    public function update($atribuits)
     {
         $db = new Db();
-        return $db->query('UPDATE`' . static::getTableName() . '` SET (login = ?, email = ?, password = ?, First_Name = ?, Last_Name = ?, Company = ?);', $atribuits, static::class);
+        $db->query('UPDATE ' . static::getTableName() . ' SET email = :email, First_Name = :First_Name, 
+        Last_Name = :Last_Name, Company = :Company, avatar = :avatar Where Login = :Login AND password = :password;',
+            [':email' => $atribuits["email"], ':First_Name' => $atribuits["First_Name"],
+                ':Last_Name' => $atribuits["Last_Name"], ':Company' => $atribuits["Company"],
+                ':Login' => $atribuits["login"], ':password' => $atribuits["password"], ':avatar' => $atribuits["avatar"]] ,
+            static::class);
+         return true;
     }
 
     public function getIsNewRecord($atribuits): bool
     {
         $db = new Db();
-        $db->query('SELECT COUNT(1) FROM `' . static::getTableName() .'` Where login Like ? ', $atribuits, static::class );
-        if( $db = 1 ) {
+        $test = $db->queryAll('SELECT COUNT(1) FROM `' . static::getTableName() .'` Where login Like ? ',
+            array($atribuits[0]));
+        if($test[0] == 1) {
             return false;
         } else {
             return true;
@@ -98,6 +105,19 @@ abstract class ActiveRecord
             else {
                 return 'Такой логин уже есть!';
             }
+    }
+
+    public function checkPassword($atribuits): bool
+    {
+        $db = new Db();
+        $test = $db->queryAll('SELECT COUNT(1) FROM `' . static::getTableName() .'` WHERE login
+         Like :login AND password Like :password;',
+            [':login' => $atribuits["login"], ':password' => $atribuits["password"]]);
+        if($test[0] == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     abstract protected static function getTableName(): string;

@@ -2,9 +2,9 @@
 
 namespace application\models;
 
-use application\models\Users\Users;
+use application\models\Persons\Persons;
 
-class Model_Login extends Users
+class Model_Login extends Persons
 {
 
 }
