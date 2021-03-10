@@ -1,28 +1,27 @@
 <?php
 
 /**
- ** Класс конфигурации базы данных
+ ** Database configuration class
  */
 
 namespace application\config;
 
 use PDO;
 
+require(__DIR__ . 'config/env.php');
+
 class DB
 {
     /** @var PDO */
-    const USER = "a25store_config";
-    const PASS = "xe)#K5t8S2";
-    const HOST = "a25store.mysql.ukraine.com.ua";
-    const DB   = "a25store_config";
+
     private PDO $pdo;
 
     public function __construct()
     {
-        $user = self::USER;
-        $pass = self::PASS;
-        $host = self::HOST;
-        $db   = self::DB;
+        $user = getenv('DB_USERNAME');
+        $pass = getenv('DB_PASSWORD');
+        $host = getenv('DB_HOST');
+        $db   = getenv('DB_DATABASE');
         $charset = 'utf8';
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
         $opt = [

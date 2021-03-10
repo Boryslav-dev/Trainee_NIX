@@ -6,17 +6,18 @@ use application\models\Model_Main;
 
 class Controller_Main extends Controller
 {
-    private Model_Main $model;
 
     public function __construct()
     {
-        $this->model= new Model_Main();
         $this->view = new View();
     }
 
     public function actionIndex()
     {
-        $data = $this->model->getData();
+        $this->loadModel("main", "model_main");
+
+        $data = $this->main->getData();
+
         $this->view->generate('main_view.php', 'layout_view.php', $data);
     }
 }

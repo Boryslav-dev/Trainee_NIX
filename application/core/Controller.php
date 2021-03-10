@@ -12,7 +12,12 @@ class Controller
         $this->view = new View();
     }
 
-    // действие (action), вызываемое по умолчанию
+    public function loadModel($alias, $title){
+        $model = "\\models\\" . $title;
+        $this->$alias = new $model();
+    }
+
+    // default action
     public function actionIndex()
     {
         // todo

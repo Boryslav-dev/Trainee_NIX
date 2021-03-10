@@ -10,21 +10,23 @@ class Controller_Login extends Controller
     /**
      * @var Model_Login
      */
-    private Model_Login $model;
+    protected Model_Login $model;
 
     public function __construct()
     {
         $this->view = new View();
-        $this->model = new Model_Login();
+        $this ->model = new Model_Login();
     }
 
-     public function actionIndex()
+    public function actionIndex()
     {
+        $this->loadModel("login", "model_login");
+
         if (isset($_POST['submit'])) {
 
             if (isset($_POST['login']) && isset($_POST['password'])) {
 
-                // Получим введённые данные с формы
+                // Get the entered data from the form
                 $login = $_POST['login'];
                 $password = $_POST['password'];
 
@@ -33,7 +35,8 @@ class Controller_Login extends Controller
                 $atributs = ['login' => $user->login = $login,
                    'password' => $user->password = $password];
 
-                if($user -> checkPassword($atributs) == true) {
+
+                if ($this->model->checkPassword($atributs) == true) {
                     $userInfo = Persons::getInfoUser($atributs);
                     session_start();
                     foreach ($userInfo as $item) {

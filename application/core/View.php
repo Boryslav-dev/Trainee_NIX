@@ -4,25 +4,25 @@ namespace application\core;
 
 class View
 {
-    public $layout_view; // шаблон по умолчанию.
+    public $layout_view; // default template
 
     /*
-    $content_file - виды отображающие контент страниц;
-    $template_file - общий для всех страниц шаблон;
-    $data - массив, содержащий элементы контента страницы. Обычно заполняется в модели.
+    $content_file - views displaying page content;
+    $template_file - template common for all pages;
+    $data is an array containing page content items. Usually filled in the model.
     */
     public function generate($content_view, $layout_view, $data = null)
     {
 
         if (is_array($data)) {
-            // преобразуем элементы массива в переменные
+            // converting array elements to variables
             extract($data);
         }
 
         /*
-        динамически подключаем общий шаблон (вид),
-        внутри которого будет встраиваться вид
-        для отображения контента конкретной страницы.
+        dynamically connecting a common template (view),
+        inside which the view will be embedded
+        to display the content of a specific page.
         */
         include 'application/views/' . $layout_view;
     }

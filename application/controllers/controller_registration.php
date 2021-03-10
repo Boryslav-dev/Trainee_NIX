@@ -20,16 +20,18 @@ class Controller_Registration extends Controller
 
     public function actionIndex()
     {
+        $this->loadModel("register", "model_register");
+
         if (isset($_POST['submit'])) {
 
             if (isset($_POST['login']) && isset($_POST['email']) && isset($_POST['password'])) {
 
-                // Получим введённые данные с формы
+                // Get the entered data from the form
                 $login = $_POST['login'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                // Шаблоны регулярных выражений
+                // Regular Expression Patterns
                 $pattern_login = '/\w{3,}/';
                 $pattern_email = '/\w+@\w+\.\w+/';
                 $pattern_password = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/';
@@ -45,10 +47,15 @@ class Controller_Registration extends Controller
                         $user->password = $password,
                         $user->First_Name = "",
                         $user->Last_Name = "",
-                        $user->Company = ""];
+                        $user->Company = "",
+                        $user->avatar = ""];
 
-                    $data = $user->save($atributs);
-
+                    if($user->getIsNewRecord($atributs) == true) {
+                        $data = $user->save($atributs);
+                    }
+                    else {
+                        $data ="Такой пользователь уже есть";
+                    }
                     header("Location:/main");
                 }
                 else {

@@ -72,7 +72,7 @@ abstract class ActiveRecord
         Last_Name, Company) VALUES (?, ?, ?, ?, ?, ?);', $atribuits, static::class);
     }
 
-    public function update($atribuits)
+    public function update($atribuits): bool
     {
         $db = new Db();
         $db->query('UPDATE ' . static::getTableName() . ' SET email = :email, First_Name = :First_Name, 
@@ -96,30 +96,15 @@ abstract class ActiveRecord
         }
     }
 
-    public function save($atribuits): string
+    public function save($atribuits)
     {
             if ($this->getIsNewRecord($atribuits) == true) {
-                 $this->insert($atribuits);
-                 return " ";
+                return $this->insert($atribuits);
             }
             else {
-                return 'Такой логин уже есть!';
+                return $this->update($atribuits);
             }
-    }
-
-    public function checkPassword($atribuits): bool
-    {
-        $db = new Db();
-        $test = $db->queryAll('SELECT COUNT(1) FROM `' . static::getTableName() .'` WHERE login
-         Like :login AND password Like :password;',
-            [':login' => $atribuits["login"], ':password' => $atribuits["password"]]);
-        if($test[0] == 1) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     abstract protected static function getTableName(): string;
-
 }
